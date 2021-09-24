@@ -77,10 +77,12 @@ namespace TestTracker.Context
         private void StoreTrack(object sender, EntityEntryEventArgs args)
         {
             var entry = args.Entry;
-            if (entry.Entity is AuditLog || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
-                return;
+            // Ignore unwanted states
+            if (entry.Entity is AuditLog || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged) return;
+
             var auditEntry = new AuditEntry(entry);
             auditEntry.TableName = entry.Metadata.GetTableName();
+
             foreach (var property in entry.Properties)
             {
                 if (property.IsTemporary)
@@ -115,6 +117,7 @@ namespace TestTracker.Context
                         break;
                 }
             }
+            // Only store completed audits
             if (!auditEntry.HasTemporaryProperties)
                 Audits.Add(auditEntry.ToAudit());
             else
