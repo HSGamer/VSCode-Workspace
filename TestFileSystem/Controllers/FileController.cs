@@ -17,7 +17,8 @@ namespace TestFileSystem.Controllers
         private readonly ICloudService cloudService;
         private readonly FileDbContext dbContext;
 
-        public FileController(ICloudService cloudService, FileDbContext dbContext) {
+        public FileController(ICloudService cloudService, FileDbContext dbContext)
+        {
             this.cloudService = cloudService;
             this.dbContext = dbContext;
         }
@@ -32,7 +33,7 @@ namespace TestFileSystem.Controllers
             dbContext.Files.Add(entry);
             await dbContext.SaveChangesAsync();
             FileDTO fileDTO = entry.ToDTO();
-            return CreatedAtAction(nameof(Get), new {id = fileDTO.Id}, fileDTO);
+            return CreatedAtAction(nameof(Get), new { id = fileDTO.Id }, fileDTO);
         }
 
         [HttpGet]
@@ -42,9 +43,11 @@ namespace TestFileSystem.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<FileDTO>> Get(int id) {
+        public async Task<ActionResult<FileDTO>> Get(int id)
+        {
             FileEntry entry = await dbContext.Files.FindAsync(id);
-            if (entry is null) {
+            if (entry is null)
+            {
                 return NotFound();
             }
             return Ok(entry.ToDTO());
