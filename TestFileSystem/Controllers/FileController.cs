@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using TestFileSystem.Context;
 using TestFileSystem.Models;
 using TestFileSystem.Services;
@@ -25,7 +23,7 @@ namespace TestFileSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<FileDTO> Upload(IFormFile formFile)
+        public async Task<ActionResult<FileDTO>> Upload(IFormFile formFile)
         {
             string fileName = formFile.FileName;
             Stream stream = formFile.OpenReadStream();
@@ -33,7 +31,23 @@ namespace TestFileSystem.Controllers
             FileEntry entry = actionFileDTO.ToEntry();
             dbContext.Files.Add(entry);
             await dbContext.SaveChangesAsync();
-            return entry.ToDTO();
+            FileDTO fileDTO = entry.ToDTO();
+            return CreatedAtAction(nameof(Get), new {id = fileDTO.Id}, fileDTO);
+        }
+
+        [HttpGet]
+        public IEnumerable<FileDTO> GetAll()
+        {
+            return dbContext.Files.AsEnumerable().Select(file => file.ToDTO());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<FileDTO>> Get(int id) {
+            FileEntry entry = await dbContext.Files.FindAsync(id);
+            if (entry is null) {
+                return NotFound();
+            }
+            return Ok(entry.ToDTO());
         }
     }
 }
