@@ -52,5 +52,22 @@ namespace TestFileSystem.Controllers
             }
             return Ok(entry.ToDTO());
         }
+
+        [HttpGet("{id}/download")]
+        public async Task<ActionResult> Download(int id) {
+            FileEntry entry = await dbContext.Files.FindAsync(id);
+            if (entry is null)
+            {
+                return NotFound();
+            }
+            ActionFileDTO fileDTO = entry.ToActionDTO();
+            Stream stream = await cloudService.Download(fileDTO);
+            using (var memoryStream = new MemoryStream()) {
+                await stream.CopyToAsync(memoryStream);
+                return new FileContentResult(memoryStream.ToArray(), "application/octet-stream") {
+                    FileDownloadName = fileDTO.FileName
+                };
+            }
+        }
     }
 }
