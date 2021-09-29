@@ -80,7 +80,7 @@ namespace TestTracker.Context
             // Ignore unwanted states
             if (entry.Entity is AuditLog || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged) return;
 
-            var auditEntry = new AuditEntry(entry);
+            var auditEntry = new AuditEntry() {Entry = entry};
             auditEntry.TableName = entry.Metadata.GetTableName();
 
             foreach (var property in entry.Properties)
