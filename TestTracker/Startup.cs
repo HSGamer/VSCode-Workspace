@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TestTracker.Context;
+using TestTracker.Models.Profiles;
 
 namespace TestTracker
 {
@@ -31,11 +32,12 @@ namespace TestTracker
             services.AddDbContext<PeopleDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("Connection"))
             );
-            services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestTracker", Version = "v1" });
-            });
+            }).AddSwaggerGenNewtonsoftSupport();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
