@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TestTracker.Models.DTO;
 
 namespace TestTracker.Models
 {
@@ -36,6 +38,18 @@ namespace TestTracker.Models
                     return EntityState.Modified;
                 }
             }
+        }
+
+        public AuditLogDTO ToDTO() {
+            AuditLogDTO dto = new();
+            dto.Id = Id;
+            dto.TableName = TableName;
+            dto.DateTime = DateTime;
+            dto.State = Enum.GetName(State);
+            dto.KeyValues = KeyValues is null ? new Dictionary<string, object>() : JsonSerializer.Deserialize<Dictionary<string, object>>(KeyValues);
+            dto.OldValues = OldValues is null ? new Dictionary<string, object>() : JsonSerializer.Deserialize<Dictionary<string, object>>(OldValues);
+            dto.NewValues = NewValues is null ? new Dictionary<string, object>() : JsonSerializer.Deserialize<Dictionary<string, object>>(NewValues);
+            return dto;
         }
     }
 }
