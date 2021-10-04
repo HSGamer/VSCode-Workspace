@@ -38,6 +38,11 @@ namespace TestTracker
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestTracker", Version = "v1" });
             }).AddSwaggerGenNewtonsoftSupport();
+            
+            services.Configure<ApiBehaviorOptions>(o =>
+            {
+                o.InvalidModelStateResponseFactory = actionContext => new BadRequestObjectResult(actionContext.ModelState);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
