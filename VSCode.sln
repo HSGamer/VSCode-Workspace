@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTracker", "TestTracker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFileSystem", "TestFileSystem\TestFileSystem.csproj", "{80EE6D42-172C-426C-A5F0-4540C628564B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRole", "TestRole\TestRole.csproj", "{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{80EE6D42-172C-426C-A5F0-4540C628564B}.Release|x64.Build.0 = Release|Any CPU
 		{80EE6D42-172C-426C-A5F0-4540C628564B}.Release|x86.ActiveCfg = Release|Any CPU
 		{80EE6D42-172C-426C-A5F0-4540C628564B}.Release|x86.Build.0 = Release|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Debug|x64.Build.0 = Debug|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Debug|x86.Build.0 = Debug|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x64.ActiveCfg = Release|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x64.Build.0 = Release|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x86.ActiveCfg = Release|Any CPU
+		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
