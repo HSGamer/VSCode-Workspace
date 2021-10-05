@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TestRole.Context;
+using TestRole.Services;
 
 namespace TestRole
 {
@@ -29,6 +30,7 @@ namespace TestRole
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RoleDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("Connection")));
+            services.AddScoped<IAccountManager, AccountManager>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

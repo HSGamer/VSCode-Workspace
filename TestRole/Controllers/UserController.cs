@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using TestRole.Context;
 using TestRole.Models;
 using TestRole.Models.DTO;
+using TestRole.Services;
 
 namespace TestRole.Controllers
 {
@@ -15,42 +16,20 @@ namespace TestRole.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly RoleDbContext dbContext;
+        private readonly IAccountManager accountManager;
 
-        public UserController(RoleDbContext dbContext)
+        public UserController(IAccountManager accountManager)
         {
-            this.dbContext = dbContext;
+            this.accountManager = accountManager;
         }
 
         [HttpPost]
-        public void Register([FromBody] RegisterDTO value)
+        public ActionResult Register([FromBody] RegisterDTO value)
         {
-            Account account = new Account() {
-                UserName = value.UserName,
-                Password = value.Password
-            };
-
-            dbContext.Accounts.Add(account);
-            dbContext.SaveChanges();
-            if (value.Role is "Student") {
-                dbContext.Students.Add(new Student() {StudentId = account.AccountId});
-                dbContext.SaveChanges();
-            } else if (value.Role is "Trainer") {
-                dbContext.Trainers.Add(new Trainer() {TrainerId = account.AccountId});
-                dbContext.SaveChanges();
-            }
+            return Ok(new { id = accountManager.addAccount(value) });
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
-        {
-            Account account = dbContext.Accounts.Find(id);
-            if (account is null) {
-                return NotFound();
-            }
-            dbContext.Accounts.Remove(account);
-            dbContext.SaveChanges();
-            return Ok();
-        }
+        public ActionResult Delete(int id) => accountManager.deleteAccount(id) ? Ok() : NotFound();
     }
 }
