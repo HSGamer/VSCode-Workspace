@@ -53,14 +53,14 @@ namespace TestExcel.Controllers
                 // Naming the sheet
                 var workSheet = package.Workbook.Worksheets.Add("Sheet1");
                 // Insert data
-                workSheet.FillData(list, (weather, cells) => {
+                workSheet.FillDataToCells(list, (weather, cells) => {
                     cells[0].Value = weather.Date;
                     cells[0].Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
                     cells[1].Value = weather.Summary;
                     cells[2].Value = weather.TemperatureC;
                     cells[3].Value = weather.TemperatureF;
                     cells[4].Formula = $"={cells[2].Address}+{cells[3].Address}";
-                }, 1, 1, 5);
+                }, 3, 2, 5);
 
                 package.Save();
             }
