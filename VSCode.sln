@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTracker", "TestTracker\TestTracker.csproj", "{E5F9F8DF-1A07-41A0-93FE-AEE0374D3683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTracker", "TestTracker\TestTracker.csproj", "{E5F9F8DF-1A07-41A0-93FE-AEE0374D3683}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFileSystem", "TestFileSystem\TestFileSystem.csproj", "{80EE6D42-172C-426C-A5F0-4540C628564B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestFileSystem", "TestFileSystem\TestFileSystem.csproj", "{80EE6D42-172C-426C-A5F0-4540C628564B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRole", "TestRole\TestRole.csproj", "{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRole", "TestRole\TestRole.csproj", "{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestExcel", "TestExcel\TestExcel.csproj", "{45F8332C-DCA7-4B52-ACC2-0060901A2007}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E5F9F8DF-1A07-41A0-93FE-AEE0374D3683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +57,23 @@ Global
 		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x64.Build.0 = Release|Any CPU
 		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x86.ActiveCfg = Release|Any CPU
 		{67716AF4-2B1F-4DF0-8F90-CE6A6CD215E5}.Release|x86.Build.0 = Release|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Debug|x64.Build.0 = Debug|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Debug|x86.Build.0 = Debug|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Release|x64.ActiveCfg = Release|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Release|x64.Build.0 = Release|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Release|x86.ActiveCfg = Release|Any CPU
+		{45F8332C-DCA7-4B52-ACC2-0060901A2007}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D79513E1-CB36-45BE-B042-64C62E595955}
 	EndGlobalSection
 EndGlobal
