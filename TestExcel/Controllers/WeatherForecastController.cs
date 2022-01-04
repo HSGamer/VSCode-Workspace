@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,14 +54,20 @@ namespace TestExcel.Controllers
                 // Naming the sheet
                 var workSheet = package.Workbook.Worksheets.Add("Sheet1");
                 // Insert data
-                workSheet.FillDataToCells(list, (weather, cells) => {
+                var dataRange = workSheet.Cells[1, 1, 1, 5].CreateNewRows(5).FillDataToCells(list, (weather, cells) => {
                     cells[0].Value = weather.Date;
                     cells[0].Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
                     cells[1].Value = weather.Summary;
                     cells[2].Value = weather.TemperatureC;
                     cells[3].Value = weather.TemperatureF;
                     cells[4].Formula = $"={cells[2].Address}+{cells[3].Address}";
-                }, 3, 2, 5);
+                });
+                var label = dataRange.SelectSubRange(1, 1, 5, 1);
+                var value = dataRange.SelectSubRange(1, 3, 5, 3);
+                var chart = workSheet.GeneratePieChart("test_chart", label, value);
+                chart.Title.Text = "Test Chart";
+                chart.SetSize(100);
+                chart.SetPosition(300, 300);
 
                 package.Save();
             }
